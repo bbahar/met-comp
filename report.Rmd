@@ -1,0 +1,48 @@
+---
+title: "Method comparison"
+author: "Burak"
+date: "September 7, 2015"
+output: html_document
+---
+
+Method comparison plots:
+
+```{r, echo=FALSE}
+library(mcr)
+a <- datasetInput()
+    if (is.null(a)) {
+      return(NULL)} else {
+        names(a) <- c("M1", "M2")
+        data1 <- mcreg(a$M1,a$M2)
+        MCResult.plotDifference(data1)
+      }
+```
+
+```{r, echo=FALSE}
+library(mcr)
+a <- datasetInput()
+    if (is.null(a)) {
+      return(NULL)} else {
+        names(a) <- c("M1", "M2")
+        data1 <- mcreg(a$M1,a$M2)
+        MCResult.plot(data1, method.reg='Deming', add.legend = FALSE, add.cor = FALSE)
+      }
+```
+
+Statistics:
+```{r, echo=FALSE}
+library(mcr)
+a <- datasetInput()
+    if (is.null(a)) {
+      return(NULL)} else {
+        names(a) <- c("M1", "M2")
+        data1 <- mcreg(a$M1,a$M2)
+        printSummary(data1)
+      }
+```
+
+Data is processed using:
+```{r, echo=FALSE}
+R.version.string
+```
+
