@@ -24,8 +24,8 @@ a <- datasetInput()
     if (is.null(a)) {
       return(NULL)} else {
         names(a) <- c("M1", "M2")
-        data1 <- mcreg(a$M1,a$M2)
-        MCResult.plot(data1, method.reg='Deming', add.legend = FALSE, add.cor = FALSE)
+        data1<- mcreg(a$M1,a$M2, error.ratio=1, method.reg=input$regmodel, method.ci='analytical')
+        plot(data1)
       }
 ```
 
