@@ -29,6 +29,12 @@ shinyUI(fluidPage(
                                'Passing-Bablok'='PaBa',
                                'Passing-Bablok Large Data'='PaBaLarge')),
       tags$hr(),
+      selectInput('cimethod', 'CI Method', 
+                  choices=list('Analytical'='analytical',
+                               'Jacknife'='jackknife',
+                               'Bootstrap'='bootstrap',
+                               'Nested Bootstrap'='nestedbootstrap')),
+      tags$hr(),
       radioButtons('format', 'Document format', c('PDF', 'HTML', 'Word'),
                    inline = TRUE),
       downloadButton('downloadReport')
