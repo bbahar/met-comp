@@ -23,7 +23,7 @@ shinyServer(function(input, output) {
       return(NULL)} else {
         names(a) <- c("M1", "M2")
         input$regmodel
-        data1<- mcreg(a$M1,a$M2, error.ratio=1, method.reg=input$regmodel, method.ci=input$cimethod)
+        data1<- mcreg(a$M1,a$M2, error.ratio=input$syx, method.reg=input$regmodel, method.ci=input$cimethod)
         plot(data1)
       }
   })

@@ -35,6 +35,8 @@ shinyUI(fluidPage(
                                'Bootstrap'='bootstrap',
                                'Nested Bootstrap'='nestedbootstrap')),
       tags$hr(),
+      numericInput('syx', 'Sy/Sx', value=1),
+      tags$hr(),
       radioButtons('format', 'Document format', c('PDF', 'HTML', 'Word'),
                    inline = TRUE),
       downloadButton('downloadReport')
