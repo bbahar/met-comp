@@ -14,7 +14,7 @@ shinyServer(function(input, output) {
       return(NULL)} else {
         names(a) <- c("M1", "M2")
         data1<- mcreg(a$M1,a$M2)
-        MCResult.plotDifference(data1)
+        MCResult.plotDifference(data1, plot.type=input$batype)
       }
   })
   output$plot2 <- renderPlot({
@@ -24,7 +24,10 @@ shinyServer(function(input, output) {
         names(a) <- c("M1", "M2")
         input$regmodel
         data1<- mcreg(a$M1,a$M2, error.ratio=input$syx, method.reg=input$regmodel, method.ci=input$cimethod)
-        plot(data1)
+        plot(data1, ci.area=input$ciarea, 
+             add.legend=input$legend, 
+             identity=input$identity,
+             add.cor=input$addcor)
       }
   })
   output$summary <- renderPrint({
