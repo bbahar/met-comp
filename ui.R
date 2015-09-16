@@ -55,6 +55,17 @@ shinyUI(fluidPage(
         column(6,
           numericInput('syx', h5('Sy/Sx'), value=1))
         ),
+      
+      fixedRow(
+        column(6,
+               selectInput('cormet',h5('Correlation Method'),
+                           choices = list('Pearson'='pearson',
+                                          'Kendall'='kendall',
+                                          'Spearman'='spearman')
+                           
+               ))
+      ),
+      
       fixedRow(
         column(6,
           checkboxInput('identity', 'Add identity line',value = TRUE),
@@ -63,21 +74,23 @@ shinyUI(fluidPage(
           checkboxInput('legend', 'Add Legend',value = TRUE),
         checkboxInput('addcor', 'Add Correlation',value = TRUE))
       ),
-      fixedRow(
-        column(6,
-               selectInput('poicol',h5('Point Color'),
-                           choices = list('Black' = 'Black',
-                                          'Blue' = 'Blue',
-                                          'Red' = 'Red')
-                           )),
-        column(6,
-               selectInput('poipch',h5('Point Shape'),
-                           choices = list('Circle' = 1,
-                                          'Square' = 0,
-                                          'Triangle' = 2,
-                                          'Diamond' = 5)
-               ))
-      ),
+      
+#      fixedRow(
+#        column(6,
+#               selectInput('poicol',h5('Point Color'),
+#                           choices = list('Black' = 'Black',
+#                                          'Blue' = 'Blue',
+#                                          'Red' = 'Red')
+#                           )),
+#        column(6,
+#               selectInput('poipch',h5('Point Shape'),
+#                           choices = list('Circle' = 1,
+#                                          'Square' = 0,
+#                                          'Triangle' = 2,
+#                                          'Diamond' = 5)
+#               ))
+#      ),
+
       radioButtons('format', h5('Document format'), 
                    c('PDF', 'HTML', 'Word'),
                    inline = TRUE),

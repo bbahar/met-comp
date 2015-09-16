@@ -27,13 +27,11 @@ a <- datasetInput()
       return(NULL)} else {
         names(a) <- c("M1", "M2")
         data1<- mcreg(a$M1,a$M2, error.ratio=input$syx, method.reg=input$regmodel, method.ci=input$cimethod)
-        plot(data1, ci.area=input$ciarea, 
-             add.legend=input$legend, 
-             identity=input$identity,
-             add.cor=input$addcor,
-             x.lab=input$xlab,
-             y.lab=input$ylab,
-             points.col=input$poicol)
+        MCResult.plot(data1, ci.area=input$ciarea, 
+             add.legend=input$legend, identity=input$identity,
+             add.cor=input$addcor, x.lab=input$xlab,
+             y.lab=input$ylab, cor.method=input$cormet 
+             )
       }
 ```
 
@@ -49,8 +47,12 @@ a <- datasetInput()
       }
 ```
 
-Data is processed using:
+Data is processed using R version:
 ```{r, echo=FALSE}
 R.version.string
 ```
 
+MCR package version:
+```{r, echo=FALSE}
+packageVersion('mcr')
+```
