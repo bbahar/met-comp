@@ -32,7 +32,8 @@ a <- datasetInput()
              identity=input$identity,
              add.cor=input$addcor,
              x.lab=input$xlab,
-             y.lab=input$ylab)
+             y.lab=input$ylab,
+             points.col=input$poicol)
       }
 ```
 
