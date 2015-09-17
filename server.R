@@ -38,8 +38,9 @@ shinyServer(function(input, output) {
       return(NULL)} else {
         names(a) <- c("M1", "M2")
         input$regmodel
-        data1<- mcreg(a$M1,a$M2, error.ratio=input$syx, 
-                      method.reg=input$regmodel, method.ci=input$cimethod)
+        data1<- mcreg(a$M1,a$M2, error.ratio = input$syx, 
+                      method.reg = input$regmodel, method.ci = input$cimethod,
+                      method.bootstrap.ci = input$metbootci)
         MCResult.plot(data1, ci.area=input$ciarea, 
              add.legend=input$legend, identity=input$identity,
              add.cor=input$addcor, x.lab=input$xlab,
@@ -59,7 +60,9 @@ shinyServer(function(input, output) {
     if (is.null(a)) {
       return(NULL)} else {
         names(a) <- c("M1", "M2")
-        data1<- mcreg(a$M1,a$M2)
+        data1<- mcreg(a$M1,a$M2, error.ratio=input$syx, 
+                      method.reg=input$regmodel, method.ci=input$cimethod,
+                      method.bootstrap.ci = input$metbootci)
         printSummary(data1)
       }
   
