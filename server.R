@@ -22,10 +22,7 @@ shinyServer(function(input, output) {
         data1<- mcreg(a$M1,a$M2,
                       mref.name=input$xlab,
                       mtest.name=input$ylab)
-        MCResult.plotDifference(data1, plot.type=input$batype
-#                                ,
-#                                ref.line.col=input$poicol
-)
+        MCResult.plotDifference(data1, plot.type=input$batype)
       
       }
     
@@ -44,11 +41,7 @@ shinyServer(function(input, output) {
         MCResult.plot(data1, ci.area=input$ciarea, 
              add.legend=input$legend, identity=input$identity,
              add.cor=input$addcor, x.lab=input$xlab,
-             y.lab=input$ylab, cor.method=input$cormet
-#             ,
-#             points.col=input$poicol, 
-#             points.pch=input$poipch  
-             )
+             y.lab=input$ylab, cor.method=input$cormet)
         
       }
     
@@ -60,9 +53,10 @@ shinyServer(function(input, output) {
     if (is.null(a)) {
       return(NULL)} else {
         names(a) <- c("M1", "M2")
-        data1<- mcreg(a$M1,a$M2, error.ratio=input$syx, 
-                      method.reg=input$regmodel, method.ci=input$cimethod,
-                      method.bootstrap.ci = input$metbootci)
+        data1<- mcreg(a$M1,a$M2, error.ratio = input$syx, 
+                      method.reg = input$regmodel, method.ci = input$cimethod,
+                      method.bootstrap.ci = input$metbootci,
+                      mref.name = input$xlab, mtest.name = input$ylab)
         printSummary(data1)
       }
   

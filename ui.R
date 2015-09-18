@@ -7,12 +7,15 @@ shinyUI(fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      fileInput('file1', h4('Choose CSV File'),
+      fixedRow(
+        column(7,
+          fileInput('file1', h5('Choose CSV File'),
                 accept=c('text/csv', 
                          'text/comma-separated-values,text/plain', 
-                         '.csv')),
-      
-      checkboxInput('header', 'Header', TRUE),
+                         '.csv'))),
+        column(3,
+          checkboxInput('header', 'Header', TRUE))
+      ),
       
       fixedRow(
         column(6,  
@@ -94,22 +97,6 @@ shinyUI(fluidPage(
           checkboxInput('addcor', 'Add Correlation',value = TRUE))
       ),
       
-#      fixedRow(
-#        column(6,
-#               selectInput('poicol',h5('Point Color'),
-#                           choices = list('Black' = 'Black',
-#                                          'Blue' = 'Blue',
-#                                          'Red' = 'Red')
-#                           )),
-#        column(6,
-#               selectInput('poipch',h5('Point Shape'),
-#                           choices = list('Circle' = 1,
-#                                          'Square' = 0,
-#                                          'Triangle' = 2,
-#                                          'Diamond' = 5)
-#               ))
-#      ),
-
       radioButtons('format', h5('Document format'), 
                    c('PDF', 'HTML', 'Word'),
                    inline = TRUE),
