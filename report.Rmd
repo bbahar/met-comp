@@ -1,13 +1,13 @@
 ---
 title: "Method comparison"
-author: "Burak"
-date: "September 7, 2015"
+author: "Bahar"
+date: "`r Sys.Date()`"
 output: html_document
 ---
 
 Method comparison plots:
 
-```{r, echo=FALSE}
+```{r BA plot, echo=FALSE}
 library(mcr)
 a <- datasetInput()
     if (is.null(a)) {
@@ -20,7 +20,7 @@ a <- datasetInput()
       }
 ```
 
-```{r, echo=FALSE}
+```{r regression plot, echo=FALSE}
 library(mcr)
 a <- datasetInput()
     if (is.null(a)) {
@@ -38,7 +38,7 @@ a <- datasetInput()
 ```
 
 Statistics:
-```{r, echo=FALSE}
+```{r statistics, echo=FALSE}
 library(mcr)
 a <- datasetInput()
     if (is.null(a)) {
@@ -46,17 +46,10 @@ a <- datasetInput()
         names(a) <- c("M1", "M2")
         data1 <- mcreg(a$M1,a$M2, error.ratio=input$syx, 
                       method.reg=input$regmodel, method.ci=input$cimethod,
-                      method.bootstrap.ci = input$metbootci)
+                      method.bootstrap.ci = input$metbootci,
+                      mref.name = input$xlab, mtest.name = input$ylab)
         printSummary(data1)
       }
 ```
 
-Data is processed using R version:
-```{r, echo=FALSE}
-R.version.string
-```
-
-MCR package version:
-```{r, echo=FALSE}
-packageVersion('mcr')
-```
+Data is processed using `r R.version.string` and mcr package `r packageVersion('mcr')`.

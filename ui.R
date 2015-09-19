@@ -7,6 +7,7 @@ shinyUI(fluidPage(
   
   sidebarLayout(
     sidebarPanel(
+      
       fixedRow(
         column(7,
           fileInput('file1', h5('Choose CSV File'),
