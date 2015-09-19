@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 
-Method comparison plots:
+Assessing aggreement between `r input$xlab` and `r input$ylab` measuments by means of Bland-Altman plot.
 
 ```{r BA plot, echo=FALSE}
 library(mcr)
@@ -19,6 +19,8 @@ a <- datasetInput()
         MCResult.plotDifference(data1, plot.type=input$batype)
       }
 ```
+
+Comparison of `r input$xlab` and `r input$ylab` measurements using regression analysis.
 
 ```{r regression plot, echo=FALSE}
 library(mcr)
@@ -37,7 +39,6 @@ a <- datasetInput()
       }
 ```
 
-Statistics:
 ```{r statistics, echo=FALSE}
 library(mcr)
 a <- datasetInput()

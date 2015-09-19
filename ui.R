@@ -107,10 +107,10 @@ shinyUI(fluidPage(
 
       mainPanel(
         tabsetPanel(type = "tabs", 
-                    tabPanel("Bland-Altman", plotOutput("plot1")),
-                    tabPanel("Regression", plotOutput("plot2")),
-                    tabPanel("Statistics", verbatimTextOutput("summary")), 
-                    tabPanel("Data", tableOutput("table"))
+                    tabPanel("Bland-Altman Plot", plotOutput("plot1")),
+                    tabPanel("Scatter Plot", plotOutput("plot2")),
+                    tabPanel("Regression Analysis", verbatimTextOutput("summary")), 
+                    tabPanel("Uploaded Data", tableOutput("table"))
       )
     )
   )
