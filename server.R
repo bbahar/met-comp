@@ -1,5 +1,6 @@
 library(shiny)
 library(mcr)
+library(xtable)
 
 shinyServer(function(input, output) {
   
@@ -64,7 +65,11 @@ shinyServer(function(input, output) {
   
   output$table <- renderTable({
     
-    datasetInput()
+    a <- datasetInput()
+    if (is.null(a)) {
+      return(NULL)} else {
+        xtable(a, type = 'html')
+      }
     
   })
   

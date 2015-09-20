@@ -1,5 +1,6 @@
 library(shiny)
 library(mcr)
+library(xtable)
 
 shinyUI(fluidPage(
   
