@@ -34,13 +34,7 @@ shinyUI(fluidPage(
                       '"'))
       ),
       
-      fixedRow(
-        column(6,  
-               textInput('nox', h5('Method 1 (Reference)'), value = 1)),
-        
-        column(6,
-               textInput('noy', h5('Method 2 (Test)'), value = 2))
-      ),
+      htmlOutput('varselect'),
       
       fixedRow(
         column(6,  

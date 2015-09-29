@@ -14,14 +14,21 @@ shinyServer(function(input, output) {
   
     })
   
+  output$varselect <- renderUI({
+    if (identical(datasetInput(), '') || identical(datasetInput(), data.frame())) 
+      return(NULL)
+    
+    # Variable selection:    
+    selectInput("vars", "Variables to use:",
+                names(datasetInput()), names(datasetInput()), multiple =TRUE)            
+  })
+  
   output$plot1 <- renderPlot({
     
-    a <- datasetInput()
+    a <- datasetInput()[,input$vars, drop=FALSE]
     if (is.null(a)) {
       return(NULL)} else {
-#        M1 <- input$nox
-#        M2 <- input$noy
-        a <- data.frame(a[input$nox],a[input$noy])
+#        a <- datasetInput()[,input$vars, drop=FALSE]
         names(a) <- c('M1', 'M2')
         data1 <- mcreg(a$M1,a$M2,
                       mref.name=input$xlab,
@@ -34,7 +41,7 @@ shinyServer(function(input, output) {
   
   output$plot2 <- renderPlot({
     
-    a <- datasetInput()
+    a <- datasetInput()[,input$vars, drop=FALSE]
     if (is.null(a)) {
       return(NULL)} else {
         names(a) <- c("M1", "M2")
@@ -53,7 +60,7 @@ shinyServer(function(input, output) {
   
   output$summary <- renderPrint({
     
-    a <- datasetInput()
+    a <- datasetInput()[,input$vars, drop=FALSE]
     if (is.null(a)) {
       return(NULL)} else {
         names(a) <- c("M1", "M2")
