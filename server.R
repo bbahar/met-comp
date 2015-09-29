@@ -1,6 +1,6 @@
 library(shiny)
 library(mcr)
-library(xtable)
+library(DT)
 
 shinyServer(function(input, output) {
   
@@ -19,8 +19,11 @@ shinyServer(function(input, output) {
     a <- datasetInput()
     if (is.null(a)) {
       return(NULL)} else {
-        names(a) <- c("M1", "M2")
-        data1<- mcreg(a$M1,a$M2,
+#        M1 <- input$nox
+#        M2 <- input$noy
+        a <- data.frame(a[input$nox],a[input$noy])
+        names(a) <- c('M1', 'M2')
+        data1 <- mcreg(a$M1,a$M2,
                       mref.name=input$xlab,
                       mtest.name=input$ylab)
         MCResult.plotDifference(data1, plot.type=input$batype)
@@ -35,14 +38,14 @@ shinyServer(function(input, output) {
     if (is.null(a)) {
       return(NULL)} else {
         names(a) <- c("M1", "M2")
-        input$regmodel
-        data1<- mcreg(a$M1,a$M2, error.ratio = input$syx, 
+        data1 <- mcreg(a$M1,a$M2, error.ratio = input$syx, 
                       method.reg = input$regmodel, method.ci = input$cimethod,
                       method.bootstrap.ci = input$metbootci)
-        MCResult.plot(data1, ci.area=input$ciarea, 
-             add.legend=input$legend, identity=input$identity,
-             add.cor=input$addcor, x.lab=input$xlab,
-             y.lab=input$ylab, cor.method=input$cormet)
+        MCResult.plot(data1, ci.area=input$ciarea,
+#                      points.col = "#FF7F5060", points.pch = 19,
+                      add.legend=input$legend, identity=input$identity,
+                      add.cor=input$addcor, x.lab=input$xlab,
+                      y.lab=input$ylab, cor.method=input$cormet)
         
       }
     
@@ -54,7 +57,7 @@ shinyServer(function(input, output) {
     if (is.null(a)) {
       return(NULL)} else {
         names(a) <- c("M1", "M2")
-        data1<- mcreg(a$M1,a$M2, error.ratio = input$syx, 
+        data1 <- mcreg(a$M1,a$M2, error.ratio = input$syx, 
                       method.reg = input$regmodel, method.ci = input$cimethod,
                       method.bootstrap.ci = input$metbootci,
                       mref.name = input$xlab, mtest.name = input$ylab)
@@ -63,12 +66,12 @@ shinyServer(function(input, output) {
   
     })
   
-  output$table <- renderTable({
+  output$table <- DT::renderDataTable({
     
     a <- datasetInput()
     if (is.null(a)) {
       return(NULL)} else {
-        xtable(a, type = 'html')
+        DT::datatable(a)
       }
     
   })

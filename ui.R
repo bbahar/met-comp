@@ -1,6 +1,5 @@
 library(shiny)
 library(mcr)
-library(xtable)
 
 shinyUI(fluidPage(
   
@@ -33,6 +32,14 @@ shinyUI(fluidPage(
                       'Double Quote' = '"',
                       'Single Quote' = "'"),
                       '"'))
+      ),
+      
+      fixedRow(
+        column(6,  
+               textInput('nox', h5('Method 1 (Reference)'), value = 1)),
+        
+        column(6,
+               textInput('noy', h5('Method 2 (Test)'), value = 2))
       ),
       
       fixedRow(
@@ -111,7 +118,7 @@ shinyUI(fluidPage(
                     tabPanel("Bland-Altman Plot", plotOutput("plot1")),
                     tabPanel("Scatter Plot", plotOutput("plot2")),
                     tabPanel("Regression Analysis", verbatimTextOutput("summary")), 
-                    tabPanel("Uploaded Data", tableOutput("table"))
+                    tabPanel("Uploaded Data", DT::dataTableOutput("table"))
       )
     )
   )
