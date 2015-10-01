@@ -2,6 +2,7 @@ library(shiny)
 library(mcr)
 library(DT)
 library(rhandsontable)
+library(shinydashboard)
 
 shinyServer(function(input, output) {
   
@@ -57,6 +58,17 @@ shinyServer(function(input, output) {
     
   })
   
+  output$plot3 <- renderPlot({
+    
+    a <- datasetInput()[,input$vars, drop=FALSE]
+    if (is.null(a)) {
+      return(NULL)} else {
+        plot(1,2)
+        
+      }
+    
+  })
+  
   output$summary <- renderPrint({
     
     a <- datasetInput()[,input$vars, drop=FALSE]
@@ -80,16 +92,17 @@ shinyServer(function(input, output) {
         DT::datatable(a)
       }
   })
+  
   output$table2 <- renderRHandsontable({
     a <- datasetInput()
+    df <- data.frame(Method1=rnorm(10), Method2=rnorm(10))
     if (is.null(a)) {
-      return(NULL)} else {
+       rhandsontable(df)} else {
         rhandsontable(a)
+#        df_ <- hot_to_r(rhandsontable(a))
         }
       }
     )
-    
-  
   
   output$downloadReport <- downloadHandler(
     filename = function() {

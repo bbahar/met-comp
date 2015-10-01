@@ -1,5 +1,7 @@
 library(shiny)
 library(mcr)
+library(rhandsontable)
+library(shinydashboard)
 
 shinyUI(fluidPage(
   
@@ -111,6 +113,7 @@ shinyUI(fluidPage(
         tabsetPanel(type = "tabs", 
                     tabPanel("Bland-Altman Plot", plotOutput("plot1")),
                     tabPanel("Scatter Plot", plotOutput("plot2")),
+                    tabPanel("Deneme Plot", plotOutput("plot3")),
                     tabPanel("Regression Analysis", verbatimTextOutput("summary")), 
                     tabPanel("Uploaded Data", DT::dataTableOutput("table")),
                     tabPanel("Editable Data", rHandsontableOutput('table2'))
