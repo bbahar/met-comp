@@ -1,6 +1,7 @@
 library(shiny)
 library(mcr)
 library(DT)
+library(rhandsontable)
 
 shinyServer(function(input, output) {
   
@@ -18,8 +19,7 @@ shinyServer(function(input, output) {
     if (identical(datasetInput(), '') || identical(datasetInput(), data.frame())) 
       return(NULL)
     
-    # Variable selection:    
-    selectInput("vars", "Variables to use:",
+    selectInput("vars", h5("Choose two variables for analysis"),
                 names(datasetInput()), names(datasetInput()), multiple =TRUE)            
   })
   
@@ -28,7 +28,6 @@ shinyServer(function(input, output) {
     a <- datasetInput()[,input$vars, drop=FALSE]
     if (is.null(a)) {
       return(NULL)} else {
-#        a <- datasetInput()[,input$vars, drop=FALSE]
         names(a) <- c('M1', 'M2')
         data1 <- mcreg(a$M1,a$M2,
                       mref.name=input$xlab,
@@ -80,8 +79,17 @@ shinyServer(function(input, output) {
       return(NULL)} else {
         DT::datatable(a)
       }
-    
   })
+  output$table2 <- renderRHandsontable({
+    a <- datasetInput()
+    if (is.null(a)) {
+      return(NULL)} else {
+        rhandsontable(a)
+        }
+      }
+    )
+    
+  
   
   output$downloadReport <- downloadHandler(
     filename = function() {
@@ -103,7 +111,7 @@ shinyServer(function(input, output) {
       file.rename(out, file)
     
     }
-    
+     
   )
   
 })

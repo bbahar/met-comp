@@ -112,7 +112,8 @@ shinyUI(fluidPage(
                     tabPanel("Bland-Altman Plot", plotOutput("plot1")),
                     tabPanel("Scatter Plot", plotOutput("plot2")),
                     tabPanel("Regression Analysis", verbatimTextOutput("summary")), 
-                    tabPanel("Uploaded Data", DT::dataTableOutput("table"))
+                    tabPanel("Uploaded Data", DT::dataTableOutput("table")),
+                    tabPanel("Editable Data", rHandsontableOutput('table2'))
       )
     )
   )
