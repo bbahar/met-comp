@@ -1,7 +1,6 @@
 library(shiny)
 library(mcr)
-library(rhandsontable)
-library(shinydashboard)
+#library(shinydashboard)
 
 shinyUI(fluidPage(
   
@@ -36,15 +35,11 @@ shinyUI(fluidPage(
                       '"'))
       ),
       
-      htmlOutput('varselect'),
-      
       fixedRow(
-        column(6,  
-          textInput('xlab', h5('Method 1 (Reference)'), value = 'Method1')),
-        
         column(6,
-          textInput('ylab', h5('Method 2 (Test)'), value = 'Method2'))
-        ),
+      htmlOutput('varselect')),
+        column(6,
+      htmlOutput('varselect2'))),
       
       selectInput('batype', h5('Bland-Altman Plot Type'), 
                   choices=list('0.5*(X+Y) vs. Y-X' = 3,
@@ -113,10 +108,8 @@ shinyUI(fluidPage(
         tabsetPanel(type = "tabs", 
                     tabPanel("Bland-Altman Plot", plotOutput("plot1")),
                     tabPanel("Scatter Plot", plotOutput("plot2")),
-                    tabPanel("Deneme Plot", plotOutput("plot3")),
                     tabPanel("Regression Analysis", verbatimTextOutput("summary")), 
-                    tabPanel("Uploaded Data", DT::dataTableOutput("table")),
-                    tabPanel("Editable Data", rHandsontableOutput('table2'))
+                    tabPanel("Uploaded Data", DT::dataTableOutput("table"))
       )
     )
   )
