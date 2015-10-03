@@ -1,5 +1,5 @@
 ---
-title: "Method comparison"
+title: "Method Comparison"
 author: "Bahar"
 date: "`r Sys.Date()`"
 output: html_document
@@ -9,14 +9,13 @@ Assessing aggreement between `r input$xlab` and `r input$ylab` measuments by mea
 
 ```{r BA plot, echo=FALSE}
 library(mcr)
-a <- datasetInput()
+a <- datasetInput()[,c(input$var1,input$var2), drop=FALSE]
     if (is.null(a)) {
       return(NULL)} else {
         names(a) <- c("M1", "M2")
         data1 <- mcreg(a$M1,a$M2,
-                      mref.name=input$xlab,
-                      mtest.name=input$ylab)
-        MCResult.plotDifference(data1, plot.type=input$batype)
+                      mref.name=input$var1,mtest.name=input$var2)
+        MCResult.plotDifference(data1, plot.type=input$batype, add.grid = TRUE)
       }
 ```
 
@@ -24,7 +23,7 @@ Comparison of `r input$xlab` and `r input$ylab` measurements using regression an
 
 ```{r regression plot, echo=FALSE}
 library(mcr)
-a <- datasetInput()
+a <- datasetInput()[,c(input$var1,input$var2), drop=FALSE]
     if (is.null(a)) {
       return(NULL)} else {
         names(a) <- c("M1", "M2")
@@ -33,22 +32,22 @@ a <- datasetInput()
                       method.bootstrap.ci = input$metbootci)
         MCResult.plot(data1, ci.area=input$ciarea, 
              add.legend=input$legend, identity=input$identity,
-             add.cor=input$addcor, x.lab=input$xlab,
-             y.lab=input$ylab, cor.method=input$cormet 
-             )
+             add.cor=input$addcor, x.lab=input$var1,
+             y.lab=input$var2, cor.method=input$cormet, 
+             equal.axis = TRUE, add.grid = TRUE)
       }
 ```
 
 ```{r statistics, echo=FALSE}
 library(mcr)
-a <- datasetInput()
+a <- datasetInput()[,c(input$var1,input$var2), drop=FALSE]
     if (is.null(a)) {
       return(NULL)} else {
         names(a) <- c("M1", "M2")
         data1 <- mcreg(a$M1,a$M2, error.ratio=input$syx, 
                       method.reg=input$regmodel, method.ci=input$cimethod,
                       method.bootstrap.ci = input$metbootci,
-                      mref.name = input$xlab, mtest.name = input$ylab)
+                      mref.name = input$var1, mtest.name = input$var2)
         printSummary(data1)
       }
 ```

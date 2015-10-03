@@ -37,8 +37,7 @@ shinyServer(function(input, output) {
       return(NULL)} else {
         names(a) <- c('M1', 'M2')
         data1 <- mcreg(a$M1,a$M2,
-                      mref.name=input$var1,
-                      mtest.name=input$var2)
+                      mref.name=input$var1, mtest.name=input$var2)
         MCResult.plotDifference(data1, plot.type=input$batype,
                                 add.grid = TRUE)
       
