@@ -7,20 +7,19 @@ dashboardPage(
   dashboardSidebar(
     sidebarMenu(
       menuItem("Data Entry", tabName = "dataentry", 
-        icon = icon("dashboard"))
-      ,
-      menuItem("Data Options", tabName = "dataopt",
-        icon = icon("th")),
-      menuItem("Selections", tabName = "select", 
-        icon = icon("question")),
+        icon = icon("upload", "fa-lg")),
+      menuItem("Method Selection", tabName = "dataopt",
+        icon = icon("random", "fa-lg")),
+      menuItem("Plot Options", tabName = "select", 
+        icon = icon("check-square-o", "fa-lg")),
       menuItem("Data", tabName = "data", 
-        icon = icon("life-ring")),
+        icon = icon("table", "fa-lg")),
       menuItem("Plots", tabName = "plots",
-        icon = icon("truck")),
+        icon = icon("line-chart", "fa-lg")),
       menuItem("Statistics", tabName = "stats",
-        icon = icon("users")),
+        icon = icon("users", "fa-lg")),
       menuItem("Download", tabName = "download",
-        icon = icon("dashboard"))
+        icon = icon("download", "fa-lg"))
     )
   ),
   dashboardBody(
