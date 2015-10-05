@@ -1,6 +1,6 @@
 library(shiny)
 library(mcr)
-#library(shinydashboard)
+library(shinydashboard)
 
 shinyServer(function(input, output) {
   
@@ -55,7 +55,6 @@ shinyServer(function(input, output) {
                       method.reg = input$regmodel, method.ci = input$cimethod,
                       method.bootstrap.ci = input$metbootci)
         MCResult.plot(data1, ci.area=input$ciarea,
-                      points.col = "#FF7F5060", points.pch = 19,
                       add.legend=input$legend, identity=input$identity,
                       add.cor=input$addcor, x.lab=input$var1,
                       y.lab=input$var2, cor.method=input$cormet,
