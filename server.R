@@ -45,6 +45,22 @@ shinyServer(function(input, output) {
     
   })
   
+#   output$info1 <- renderPrint({
+#     
+#     a <- datasetInput()[,c(input$var1,input$var2), drop=FALSE]
+#     if (is.null(a)) {
+#       return(NULL)} else {
+#     nearPoints(a, input$plot_click1)}
+#   })
+  
+  output$info2 <- renderPrint({
+    
+    a <- datasetInput()[,c(input$var1,input$var2), drop=FALSE]
+    if (is.null(a)) {
+      return(NULL)} else {
+        nearPoints(a, input$plot_click2, xvar=input$var1, yvar=input$var2, maxpoints = 1)}
+  })
+  
   output$plot2 <- renderPlot({
     
     a <- datasetInput()[,c(input$var1,input$var2), drop=FALSE]
