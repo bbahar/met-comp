@@ -8,14 +8,14 @@ dashboardPage(
     sidebarMenu(
       menuItem("Data Entry", tabName = "dataentry", 
         icon = icon("upload", "fa-lg")),
-      menuItem("Method Selection", tabName = "dataopt",
-        icon = icon("random", "fa-lg")),
       menuItem("Data", tabName = "data", 
         icon = icon("table", "fa-lg")),
+      menuItem("Method Selection", tabName = "dataopt",
+        icon = icon("random", "fa-lg")),
       menuItem("Plots", tabName = "plots",
         icon = icon("line-chart", "fa-lg"),
-        menuSubItem("BA Plot", tabName = "subitem1"),
-        menuSubItem("Scatter Plot", tabName = "subitem2")),
+          menuSubItem("BA Plot", tabName = "subitem1"),
+          menuSubItem("Scatter Plot", tabName = "subitem2")),
       menuItem("Statistics", tabName = "stats",
         icon = icon("users", "fa-lg")),
       menuItem("Download", tabName = "download",
@@ -39,14 +39,11 @@ dashboardPage(
             c(None='',
             'Double Quote' = '"',
             'Single Quote' = "'"),
-            '"'))
-      ,
+            '"')),
       tabItem(tabName = "dataopt",
               fixedRow(
-                column(6,
-                       htmlOutput('varselect')),
-                column(6,
-                       htmlOutput('varselect2')))
+                column(6,htmlOutput('varselect')),
+                column(6,htmlOutput('varselect2')))
       ),
       tabItem(tabName = "data",
               DT::dataTableOutput("table")
@@ -77,33 +74,27 @@ tabItem(tabName = "subitem2",
                                      'Weighted Deming' = 'WDeming',
                                      'Passing-Bablok' = 'PaBa',
                                      'Passing-Bablok Large Data' = 'PaBaLarge')),
-                                
       fixedRow(
-      column(6,  
-            selectInput('cimethod', h5('CI Method'), 
+      column(6, selectInput('cimethod', h5('CI Method'), 
                         choices=list('Analytical' = 'analytical',
                                      'Jacknife' = 'jackknife',
                                      'Bootstrap' = 'bootstrap',
                                      'Nested Bootstrap' = 'nestedbootstrap'))),
                                   
-      column(6,
-            selectInput('metbootci',h5('Bootstrap CI Method'),
+      column(6, selectInput('metbootci',h5('Bootstrap CI Method'),
                         choices = list('Quantile'='quantile',
                                        'Student'='Student',
                                        'BCa'='BCa',
                                        'tBoot'='tBoot')))
       ),
       fixedRow(
-              column(6,
-                    selectInput('cormet',h5('Correlation Method'),
+      column(6, selectInput('cormet',h5('Correlation Method'),
                         choices = list('Pearson'='pearson',
                                        'Kendall'='kendall',
                                        'Spearman'='spearman')
                                          )),
-              column(6,
-                    numericInput('syx', h5('Sy/Sx'), value=1))
+      column(6, numericInput('syx', h5('Sy/Sx'), value=1))
                                 ),
-                                
       fixedRow(
               column(6,  
               checkboxInput('identity', 'Add identity line', value = TRUE),

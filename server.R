@@ -15,19 +15,23 @@ shinyServer(function(input, output) {
     })
   
   output$varselect <- renderUI({
-    if (identical(datasetInput(), '') || identical(datasetInput(), data.frame())) 
+    if (identical(datasetInput(), '') || identical(datasetInput(), 
+                                                   data.frame())) 
       return(NULL)
     
     selectInput("var1", h5("Method 1 (Reference)"),
-                names(datasetInput()), names(datasetInput()), multiple =FALSE)            
+                names(datasetInput()), names(datasetInput()), 
+                multiple =FALSE)            
   })
   
   output$varselect2 <- renderUI({
-    if (identical(datasetInput(), '') || identical(datasetInput(), data.frame())) 
+    if (identical(datasetInput(), '') || identical(datasetInput(), 
+                                                   data.frame())) 
       return(NULL)
     
     selectInput("var2", h5("Method 2 (Test)"),
-                names(datasetInput()), names(datasetInput()), multiple =FALSE)            
+                names(datasetInput()), names(datasetInput()), 
+                multiple =FALSE)            
   })
   
   output$plot1 <- renderPlot({
@@ -45,20 +49,13 @@ shinyServer(function(input, output) {
     
   })
   
-#   output$info1 <- renderPrint({
-#     
-#     a <- datasetInput()[,c(input$var1,input$var2), drop=FALSE]
-#     if (is.null(a)) {
-#       return(NULL)} else {
-#     nearPoints(a, input$plot_click1)}
-#   })
-  
   output$info2 <- renderPrint({
     
     a <- datasetInput()[,c(input$var1,input$var2), drop=FALSE]
     if (is.null(a)) {
       return(NULL)} else {
-        nearPoints(a, input$plot_click2, xvar=input$var1, yvar=input$var2, maxpoints = 1)}
+        nearPoints(a, input$plot_click2, xvar=input$var1, 
+                   yvar=input$var2, maxpoints = 1)}
   })
   
   output$plot2 <- renderPlot({
