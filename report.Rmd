@@ -1,11 +1,13 @@
 ---
 title: "Method Comparison"
-author: "Bahar"
+author: "https://bahar.shinyapps.io/met-comp"
 date: "`r Sys.Date()`"
 output: html_document
 ---
 
-Assessing aggreement between **`r input$var1`** and **`r input$var2`** measuments by means of Bland-Altman plot:
+
+#### Assessing aggreement between **`r input$var1`** and **`r input$var2`** measuments by means of Bland-Altman plot:
+
 
 ```{r BA plot, echo=FALSE, results='markup'}
 library(mcr)
@@ -13,15 +15,17 @@ a <- datasetInput()[,c(input$var1,input$var2), drop=FALSE]
     if (is.null(a)) {
       return(NULL)} else {
         names(a) <- c("M1", "M2")
-        data1 <- mcreg(a$M1,a$M2,
-                      mref.name=input$var1,mtest.name=input$var2)
-        MCResult.plotDifference(data1, plot.type=input$batype, add.grid = TRUE)
+        data1 <- mcreg(a$M1, a$M2,
+                      mref.name = input$var1, mtest.name = input$var2)
+        MCResult.plotDifference(data1, plot.type = input$batype, add.grid = TRUE)
       }
 ```
 
 ___
 
-Scatter plot of **`r input$var1`** (reference method) and **`r input$var2`** (test method):
+
+#### Scatter plot of **`r input$var1`** (reference method) and **`r input$var2`** (test method):
+
 
 ```{r regression plot, echo=FALSE}
 library(mcr)
@@ -42,20 +46,35 @@ a <- datasetInput()[,c(input$var1,input$var2), drop=FALSE]
 
 ___
 
-Regression analysis summary:
 
-```{r statistics, echo=FALSE, comment = ''}
+#### Regression analysis summary:
+
+
+```{r statistics, echo=FALSE, comment = '', warning = FALSE, message = FALSE}
 library(mcr)
+library(pander)
 a <- datasetInput()[,c(input$var1,input$var2), drop=FALSE]
     if (is.null(a)) {
       return(NULL)} else {
         names(a) <- c("M1", "M2")
-        data1 <- mcreg(a$M1,a$M2, error.ratio=input$syx, 
-                      method.reg=input$regmodel, method.ci=input$cimethod,
+        data1 <- mcreg(a$M1, a$M2, error.ratio = input$syx, 
+                      method.reg = input$regmodel, method.ci = input$cimethod,
                       method.bootstrap.ci = input$metbootci,
                       mref.name = input$var1, mtest.name = input$var2)
-        printSummary(data1)
+        pander(getCoefficients(data1))
       }
 ```
 
-Data is processed using `r R.version.string` and mcr package `r packageVersion('mcr')`.
+___
+
+
+#### Data is processed using `r R.version.string` and mcr package `r packageVersion('mcr')`.
+
+
+##### References:
+
+1. R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+  
+2. shiny: Web Application Framework for R. R package version 0.12.2. URL http://CRAN.R-project.org/package=shiny
+
+3. mcr: Method Comparison Regression. R package version 1.2.1. URL http://CRAN.R-project.org/package=mcr
