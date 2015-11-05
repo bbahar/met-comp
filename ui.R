@@ -6,6 +6,8 @@ dashboardPage(
   dashboardHeader(title = "Method Comparison"),
   dashboardSidebar(
     sidebarMenu(
+      menuItem("Information", tabName = "info", 
+        icon = icon("info", "fa-info")),
       menuItem("Data Entry", tabName = "dataentry", 
         icon = icon("upload", "fa-lg")),
       menuItem("Data", tabName = "data", 
@@ -24,6 +26,14 @@ dashboardPage(
   ),
   dashboardBody(
     tabItems(
+      tabItem(tabName = "info",
+              h2("Method Comparison"),
+              h4('Enter your data using "Data Entry" tab'),
+              h4('View your data using "Data" tab'),
+              h4('Select your reference and test methods using "Method Selection" tab'),
+              h4('See your data distribution and choose statistical tests using "Plots" tab'),
+              h4('See your statistics using "Statistics" tab'),
+              h4('Download your results using "Download" tab')),
       tabItem(tabName = "dataentry",
         fileInput('file1', h5('Choose CSV File'),
         accept=c('text/csv', 
@@ -108,7 +118,7 @@ tabItem(tabName = "subitem2",
       ),
       tabItem(tabName = "download",
               radioButtons('format', h5('Document format'), 
-                           c('PDF', 'HTML', 'Word'),
+                           c('HTML', 'Word'),
                            inline = TRUE),
               downloadButton('downloadReport')
       )
