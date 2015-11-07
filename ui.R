@@ -7,7 +7,7 @@ dashboardPage(
   dashboardSidebar(
     sidebarMenu(
       menuItem("Information", tabName = "info", 
-        icon = icon("info", "fa-info")),
+        icon = icon("info", "fa-lg")),
       menuItem("Data Entry", tabName = "dataentry", 
         icon = icon("upload", "fa-lg")),
       menuItem("Data", tabName = "data", 
@@ -28,12 +28,22 @@ dashboardPage(
     tabItems(
       tabItem(tabName = "info",
               h2("Method Comparison"),
-              h4('Enter your data using "Data Entry" tab'),
-              h4('View your data using "Data" tab'),
-              h4('Select your reference and test methods using "Method Selection" tab'),
-              h4('See your data distribution and choose statistical tests using "Plots" tab'),
-              h4('See your statistics using "Statistics" tab'),
-              h4('Download your results using "Download" tab')),
+              br(),
+              h4('This website is a product of R programming language (1) and 
+                 shiny web application framework (2). Statistics are based on mcr package (3).'),     
+              br(),
+              h4('How to:'),
+              h4('Upload your data using the "Data Entry" tab and 
+                 view your uploaded data using the "Data" tab.'),
+              h4('Select your reference and test methods using the "Method Selection" tab.'),
+              h4('See your data distribution and choose statistical tests using the "Plots" tab.'),
+              h4('See the statistical evaluation of the selected data using the "Statistics" tab and 
+                 download using the "Download" tab.'),
+              br(),
+              h4('References:'),
+              h4('1. R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.'),
+              h4('2. shiny: Web Application Framework for R. R package version 0.12.2. URL http://CRAN.R-project.org/package=shiny'),
+              h4('3. mcr: Method Comparison Regression. R package version 1.2.1. URL http://CRAN.R-project.org/package=mcr')),
       tabItem(tabName = "dataentry",
         fileInput('file1', h5('Choose CSV File'),
         accept=c('text/csv', 
@@ -118,7 +128,7 @@ tabItem(tabName = "subitem2",
       ),
       tabItem(tabName = "download",
               radioButtons('format', h5('Document format'), 
-                           c('HTML', 'Word'),
+                           c('PDF','HTML', 'Word'),
                            inline = TRUE),
               downloadButton('downloadReport')
       )
