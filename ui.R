@@ -33,17 +33,17 @@ dashboardPage(
                  shiny web application framework (2). Statistics are based on mcr package (3).'),     
               br(),
               h4('How to:'),
-              h4('Upload your data using the "Data Entry" tab and 
+              h4('1. Upload your data using the "Data Entry" tab and 
                  view your uploaded data using the "Data" tab.'),
-              h4('Select your reference and test methods using the "Method Selection" tab.'),
-              h4('See your data distribution and choose statistical tests using the "Plots" tab.'),
-              h4('See the statistical evaluation of the selected data using the "Statistics" tab and 
+              h4('2. Select your reference and test methods using the "Method Selection" tab.'),
+              h4('3. See your data distribution and choose statistical tests using the "Plots" tab.'),
+              h4('4. See the statistical evaluation of the selected data using the "Statistics" tab and 
                  download using the "Download" tab.'),
               br(),
               h4('References:'),
-              h4('1. R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.'),
-              h4('2. shiny: Web Application Framework for R. R package version 0.12.2. URL http://CRAN.R-project.org/package=shiny'),
-              h4('3. mcr: Method Comparison Regression. R package version 1.2.1. URL http://CRAN.R-project.org/package=mcr')),
+              h5('1. R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.'),
+              h5('2. shiny: Web Application Framework for R. R package version 0.12.2. URL http://CRAN.R-project.org/package=shiny'),
+              h5('3. mcr: Method Comparison Regression. R package version 1.2.1. URL http://CRAN.R-project.org/package=mcr')),
       tabItem(tabName = "dataentry",
         fileInput('file1', h5('Choose CSV File'),
         accept=c('text/csv', 
