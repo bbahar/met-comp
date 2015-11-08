@@ -1,11 +1,9 @@
 ---
 title: "Method Comparison"
 author: "https://bahar.shinyapps.io/met-comp"
-date: "`r Sys.Date()`"
-output: html_document
+date: '`r Sys.Date()`'
+output: pdf_document
 ---
-
-#### Assessing aggreement between **`r input$var1`** (reference method) and **`r input$var2`** (test method) measurements by means of Bland-Altman plot:
 
 ```{r BA plot, echo=FALSE, results='markup'}
 library(mcr)
@@ -18,10 +16,6 @@ a <- datasetInput()[,c(input$var1,input$var2), drop=FALSE]
         MCResult.plotDifference(data1, plot.type = input$batype, add.grid = TRUE)
       }
 ```
-
-___
-
-#### Scatter plot of **`r input$var1`** (reference method) and **`r input$var2`** (test method) measurements:
 
 ```{r regression plot, echo=FALSE, results='markup'}
 library(mcr)
@@ -40,8 +34,6 @@ a <- datasetInput()[,c(input$var1,input$var2), drop=FALSE]
       }
 ```
 
-___
-
 #### Regression analysis summary:
 
 ```{r statistics, echo=FALSE, comment = '', warning = FALSE, message = FALSE}
@@ -59,7 +51,7 @@ a <- datasetInput()[,c(input$var1,input$var2), drop=FALSE]
       }
 ```
 
-___
+#### Assessing aggreement between **`r input$var1`** (reference method) and **`r input$var2`** (test method) measurements by means of Bland-Altman and scatter plots.
 
 #### Data is processed using R language^1^, shiny web application framework^2^ and mcr package^3^.
 
